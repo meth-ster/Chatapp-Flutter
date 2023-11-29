@@ -1,40 +1,40 @@
 # Stage 1: Build
-FROM node:21-alpine AS builder
+FROM node:18-alpine AS builder
 
 # Set working directory
 WORKDIR /app
-
-# Copy package files first for efficient caching
-COPY package.json package-lock.json ./
 
 # Install dependencies
+COPY package.json package-lock.json ./
 RUN npm ci
 
-# Ensure Vite has the correct permissions
-RUN chmod +x node_modules/.bin/vite
-
-# Copy the rest of the application code
+# Copy source code
 COPY . .
 
-# Optional: Build the project for production (uncomment for production builds)
-# RUN npm run build
+# Set environment variables
+ENV NODE_ENV=production
 
-# Stage 2: Serve
-FROM node:21-alpine
+# Build the frontend
+RUN npm run build
 
-# Set working directory
-WORKDIR /app
+# Stage 2: Serve with Nginx
+FROM nginx:stable-alpine
 
-# Copy necessary files and dependencies from the builder stage
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app ./
+# Remove default Nginx static assets
+RUN rm -rf /usr/share/nginx/html/*
 
-# Ensure Vite executable permission (again, for safety)
-RUN chmod +x node_modules/.bin/vite
+# Copy built assets from builder stage
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Expose the port for the Vite development server
-EXPOSE 5173
+# Copy custom Nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Start the development server
-CMD ["npm", "run", "dev", "--", "--host"]
+# Expose port 80
+EXPOSE 80
 
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost/ || exit 1
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
