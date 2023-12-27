@@ -1,6 +1,3 @@
-[![Fork Button](https://img.shields.io/github/forks/iemafzalhassan/full-stack_chatApp?style=social)](https://github.com/iemafzalhassan/full-stack_chatApp/fork)
-
-
 # Real-Time Chat Application
 
 
@@ -79,7 +76,7 @@ NODE_ENV=production
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/iemafzalhassan/full-stack_chatApp.git
+git clone https://github.com/venus0213/Chatapp-Flutter.git
 ```
 
 🏗️ Build and Run the Application
@@ -107,7 +104,7 @@ http://localhost
 Follow these simple steps to get the project up and running on your local Host using docker.
 
 ```bash
-git clone https://github.com/iemafzalhassan/full-stack_chatApp.git
+git clone https://github.com/venus0213/Chatapp-Flutter.git
 ```
 
 ```bash
