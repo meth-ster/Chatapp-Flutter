@@ -1,65 +1,101 @@
-# 🌟 Full Stack Realtime Chat App 🌟
-
-Welcome to the **Full Stack Realtime Chat App** project! 🚀 This open-source project is built to provide a **real-time chat experience** using the latest technologies. Whether you're a seasoned developer or a beginner, we invite you to contribute and be a part of this exciting journey! 💻👾
+[![Fork Button](https://img.shields.io/github/forks/iemafzalhassan/full-stack_chatApp?style=social)](https://github.com/iemafzalhassan/full-stack_chatApp/fork)
 
 
-![Login](./frontend/Public/login.png)
+# Real-Time Chat Application
 
 
+Welcome to the **Full Stack Realtime Chat App** project, where we're building a scalable and secure real-time chat experience using the latest technologies. Whether you're a seasoned developer or a beginner, we invite you to contribute and be a part of this exciting journey!
 
 ## Table of Contents
-- [🔧 Tech Stack](#-tech-stack)
-- [🛠️ Getting Started](#-getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Setup .env File](#setup-env-file)
-  - [Building the Application](#building-the-application)
-    - [Backend](#backend)
-    - [Frontend](#frontend)
-- [🤝 Contributing](#-contributing)
-- [🎯 Future Plans](#-future-plans)
-- [📜 License](#license)
+-----------------
 
----
+* [Introduction](#introduction)
+* [Features](#features)
+* [Tech Stack](#tech-stack)
+* [Getting Started](#getting-started)
+* [Building the Backend](#building-the-backend)
+* [Running the Application](#running-the-application)
+* [Contributing](#contributing)
+* [Future Plans](#future-plans)
+* [License](#license)
 
-## 🔧 Tech Stack
-This application is built using the **MERN** stack with **Socket.io** for real-time messaging and **TailwindCSS** for UI design. Here’s the stack breakdown:
+## 📝 Introduction
+------------
 
-- **MongoDB**: NoSQL database for storing messages and user data.
-- **Express**: Backend web framework for building RESTful APIs.
-- **React**: Frontend framework for a dynamic user interface.
-- **Node.js**: JavaScript runtime for server-side development.
-- **Socket.io**: Enables real-time, bidirectional communication between the server and clients.
-- **TailwindCSS**: Utility-first CSS framework for building modern, responsive UIs.
-- **DaisyUI**: A component library built on top of TailwindCSS for faster UI development.
-- **JWT Authentication**: Secure user authentication using JSON Web Tokens.
-- **Zustand**: A state management library for React.
+This project aims to provide a real-time chat experience that's both scalable and secure. With a focus on modern technologies, we're building an application that's easy to use and maintain.
+
+## ✨ Features
+------------
+
+* **Real-time Messaging**: Send and receive messages instantly using Socket.io 
+* **User Authentication & Authorization**: Securely manage user access with JWT 
+* **Scalable & Secure Architecture**: Built to handle large volumes of traffic and data 
+* **Modern UI Design**: A user-friendly interface crafted with React and TailwindCSS 
+* **Profile Management**: Users can upload and update their profile pictures 
+* **Online Status**: View real-time online/offline status of users 
 
 
+## 🛠️ Tech Stack
+-------------
 
----
+* **Backend:** Node.js, Express, MongoDB, Socket.io
+* **Frontend:** React, TailwindCSS
+* **Containerization:** Docker
+* **Orchestration:** Kubernetes (planned)
+* **Web Server:** Nginx
+* **State Management:** Zustand
+* **Authentication:** JWT
+* **Styling Components:** DaisyUI
 
-## 🛠️ Getting Started
 
-Follow these simple steps to get the project up and running on your local machine.
+### 🔧 Prerequisites
+--------------
 
-### Prerequisites
-Before you start, ensure you have the following installed:
+* **[Node.js](https://nodejs.org/)** (v14 or higher)
+* **[Docker](https://www.docker.com/get-started)** (for containerizing the app)
+* **[Git](https://git-scm.com/downloads)** (to clone the repository)
 
-- **Node.js** (v14 or higher)
-- **Docker** (for containerizing the app)
-- **Git** (to clone the repository)
 
-### Setup .env File
-1. Navigate to the `backend` directory.
-2. Create a `.env` file and add the following content (you may need to modify the values according to your setup):
+### 📝 Setup .env File
+------------------
 
+1. Navigate to the `backend` directory:
+```bash
+cd backend
+```
+2. Create a `.env` file and add the following content (modify the values as needed):
 ```env
-MONGODB_URI=mongodb://localhost:27017/chatapp
+MONGODB_URI=mongodb://mongo:27017/chatapp
 JWT_SECRET=your_jwt_secret_key
 PORT=5001
 ```
-### This file is crucial for defining the environment variables that the backend will use.
+    > **Note:** Replace `your_jwt_secret_key` with a strong secret key of your choice.
 
+### Clone the Repository
+----------------------
+
+```bash
+git clone https://github.com/iemafzalhassan/full-stack_chatApp.git
+```
+
+🏗️ Build and Run the Application
+--------------------------------
+Follow these steps to build and run the application:
+
+1. Build & Run the Containers:
+
+```bash
+cd full-stack_chatApp
+```
+```bash
+docker-compose up -d --build
+```
+
+2. Access the application in your browser:
+
+```
+http://localhost
+```
 ---
 
 ## 🛠️ Getting Started
@@ -67,11 +103,11 @@ PORT=5001
 Follow these simple steps to get the project up and running on your local Host using docker.
 
 ```bash
-git clone https://github.com/yourusername/full-stack-realtime-chat-app.git
+git clone https://github.com/iemafzalhassan/full-stack_chatApp.git
 ```
 
 ```bash
-cd full-stack-chatApp
+cd full-stack_chatApp
 ```
 ## Create a Docker network:
 
@@ -79,20 +115,20 @@ cd full-stack-chatApp
 docker network create full-stack
 ```
 
-## Building the frontend.
+## 🛠️ Building the Frontend
 
 ```bash
 cd frontend
 ```
 
 ```bash
-docker build -t fullstack_frontend .
+docker build -t full-stack_frontend .
 ```
 
 ### Run the Frontend container:
 
 ```bash
-docker run -d --network=full-stack  -p 5173:5173 --name frontend frontend:latest
+docker run -d --network=full-stack  -p 5173:5173 --name frontend full-stack_frontend:latest
 ```
 #### The frontend will now be accessible on port 5173.
 
@@ -104,7 +140,7 @@ docker run -d -p 27017:27017 --name mongo mongo:latest
 ```
 ---
 
-## Building the Backend
+## 🛠️ Building the Backend
 
 ```bash
 cd backend
@@ -113,13 +149,13 @@ cd backend
 ### Build the Backend image:
 
 ```bash
-docker build -t fullstack_backend .
+docker build -t full-stack_backend .
 ```
 
 ### Run the Backend container:
 
 ```bash
-docker run -d --network=full-stack --add-host=host.docker.internal:host-gateway -p 5001:5001 --env-file .env backend
+docker run -d --network=full-stack --add-host=host.docker.internal:host-gateway -p 5001:5001 --env-file .env full-stack_backend
 ```
 #### This will build and run the backend container, exposing the backendAPI on port 5001.
 
@@ -127,36 +163,51 @@ docker run -d --network=full-stack --add-host=host.docker.internal:host-gateway 
 
 ### To Verify the conncetion between backend and databse:
 ```bash
-docker logs < backend-container-id >
+docker-compose logs -f
 ```
 
 ### Once the backend and frontend containers are running, you can access the application in your browser:
 
-`Frontend: http://localhost:5173`
+`Frontend: http://localhost`
 
 
 You can now interact with the real-time chat app and start messaging!
 
 ---
 
-## 🤝 Contributing
-We welcome contributions from developers of all skill levels! Here's how you can contribute:
+
+
+### 🤝 Contributing
+-------------
+
+We welcome contributions from DevOps & Developer of all skill levels! Here's how you can contribute:
 
 **Report bugs:** If you encounter any bugs or issues, please open an issue with detailed information.
 **Suggest features:** Have an idea for a new feature? Open an issue to discuss it with the community.
 **Submit pull requests:** If you have a fix or a feature you'd like to contribute, submit a pull request. Ensure your changes pass any linting or tests, if applicable.
-To get started, fork the repository and create your branch for the feature or bug fix you're working on.
 
----
+### 🌐 Join the Community
+--------------------
 
-## 🎯 Future Plans
+We invite you to join our community of developers and contributors. Let's work together to build an amazing real-time chat application!
+
+* **Star this repository** to show your support
+* **Fork this repository** to contribute to the project
+* **Open an issue** to report bugs or suggest features
+* **Submit a pull request** to contribute code changes
+
+## 🔮 Future Plans
+--------------
+
 This project is evolving, and here are a few exciting things on the horizon:
 
-CI/CD Pipelines: We plan to implement Continuous Integration and Continuous Deployment pipelines to automate testing and deployment.
-Kubernetes (K8s): Kubernetes manifests will be added for container orchestration to deploy the app on cloud platforms like AWS, GCP, or Azure.
-Stay tuned for updates as we continue to improve and expand this project!
+* [ ] **CI/CD Pipelines:** Implement Continuous Integration and Continuous Deployment pipelines to automate testing and deployment.
+* [ ] **Kubernetes (K8s):** Add Kubernetes manifests for container orchestration to deploy the app on cloud platforms like AWS, GCP, or Azure.
+* [] **Feature Expansion:** Add more features like group chats, media sharing, and user status updates.
+* **Stay tuned for updates as we continue to improve and expand this project!**
 
 ---
+
 ## 📚 Project Snapshots:
 
 ![Settings](./frontend/Public/settings.png)
@@ -165,8 +216,25 @@ Stay tuned for updates as we continue to improve and expand this project!
 
 ![logout](./frontend/Public/logout.png)
 
+![Login](./frontend/Public/login.png)
 
----
+
 
 ## 📜 License
+-------
+
 This project is licensed under the MIT License. See the LICENSE file for more details.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
