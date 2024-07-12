@@ -55,20 +55,26 @@ This project aims to provide a real-time chat experience that's both scalable an
 * **[Git](https://git-scm.com/downloads)** (to clone the repository)
 
 
-### 📝 Setup .env File
+### 📝 Environment Configuration
 
+Create a `.env` file in the root directory with the following configuration:
 
-1. Navigate to the `backend` directory:
-```bash
-cd backend
-```
-2. Create a `.env` file and add the following content (modify the values as needed):
 ```env
-MONGODB_URI=mongodb://mongo:27017/chatapp
+# Database Configuration
+MONGODB_URI=mongodb://root:admin@mongo:27017/chatApp?authSource=admin&retryWrites=true&w=majority
+
+# JWT Configuration
 JWT_SECRET=your_jwt_secret_key
+
+# Server Configuration
 PORT=5001
+NODE_ENV=production
 ```
-    > **Note:** Replace `your_jwt_secret_key` with a strong secret key of your choice.
+
+> **Note:** 
+> - Replace `your_jwt_secret_key` with a strong secret key
+> - For local development without Docker, change `MONGODB_URI` to `mongodb://localhost:27017/chatApp`
+> - You can use command ```echo "Text what you want" | base64
 
 ### Clone the Repository
 
